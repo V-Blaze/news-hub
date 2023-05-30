@@ -6,6 +6,7 @@ import {
 } from './pages';
 
 // Components
+import { Navbar } from './components';
 
 // Stylesheet
 import './App.css';
@@ -13,6 +14,7 @@ import './App.css';
 function App() {
   return (
     <>
+      <Navbar />
       <main>
         <>
           <Routes>
