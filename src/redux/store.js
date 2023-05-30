@@ -1,8 +1,10 @@
-import { configureStore } from '@reduxjs/toolkit'
-import { newsSlice } from './newsSlice'
+import { configureStore } from '@reduxjs/toolkit';
+import { newsSlice } from './newsSlice';
 
-export const store = configureStore({
+const store = configureStore({
   reducer: {
     news: newsSlice,
   },
-})
+});
+
+export default store;
