@@ -1,71 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 // Components
 import { Hero, NewsCard } from '../components';
 
-// Assets
-import { heroIMG } from '../assets/images';
+// ACTIONS
+import { newsThunk } from '../redux/newsSlice';
 
 const Home = () => {
-  const news = [
-    {
-      image: heroIMG,
-      category: 'Tech',
-      slug: 'Charge two decies at the same time with this woreless charging dock',
-      author: 'Blaze',
-      time: '5 days ago',
-    },
-    {
-      image: heroIMG,
-      category: 'Science',
-      slug: 'Charge two decies at the same time with this woreless charging dock',
-      author: 'Blaze',
-      time: '3 days ago',
-    },
-    {
-      image: heroIMG,
-      category: 'Tech',
-      slug: 'Charge two decies at the same time with this woreless charging dock',
-      author: 'Blaze',
-      time: '1 days ago',
-    },
-    {
-      image: heroIMG,
-      category: 'Tech',
-      slug: 'Charge two decies at the same time with this woreless charging dock',
-      author: 'Blaze',
-      time: '5 hrs ago',
-    },
-    {
-      image: heroIMG,
-      category: 'Sport',
-      slug: 'Charge two decies at the same time with this woreless charging dock',
-      author: 'Blaze',
-      time: '5 mis ago',
-    },
-    {
-      image: heroIMG,
-      category: 'Tech',
-      slug: 'Charge two decies at the same time with this woreless charging dock',
-      author: 'Blaze',
-      time: '2 days ago',
-    },
-    {
-      image: heroIMG,
-      category: 'Tech',
-      slug: 'Charge two decies at the same time with this woreless charging dock',
-      author: 'Blaze',
-      time: '5 weeks ago',
-    },
-    {
-      image: heroIMG,
-      category: 'Tech',
-      slug: 'Charge two decies at the same time with this woreless charging dock',
-      author: 'Blaze',
-      time: '5 months ago',
-    },
-  ];
+  const dispatch = useDispatch();
+  const loading = useSelector((state) => state.news.loading);
+  const latestNews = useSelector((state) => state.news.latestNews);
 
+  useEffect(() => {
+    dispatch(newsThunk());
+    console.log('here');
+    // console.log(latestNews, loading);
+  }, [dispatch]);
+
+  console.log(latestNews?.articles, loading);
   return (
     <>
       <Hero />
@@ -81,9 +34,15 @@ const Home = () => {
             </select>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {news.map((newsItem) => (
+            {/* {news.map((newsItem) => (
               <NewsCard
                 key={newsItem.time}
+                newsItem={newsItem}
+              />
+            ))} */}
+            {latestNews?.articles?.map((newsItem) => (
+              <NewsCard
+                key={newsItem.publishedAt}
                 newsItem={newsItem}
               />
             ))}
