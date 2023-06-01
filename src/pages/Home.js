@@ -90,9 +90,9 @@ const Home = () => {
           </div>
         </div>
         <div className="flex gap-8 w-full justify-center md:justify-end pr-6">
-          <button type="button" className="bg-[#366BD9] px-4 py-1 text-white rounded-lg bg-opacity-[70%] hover:bg-[#366BD9]">Prev</button>
+          <button type="button" className="bg-[#366BD9] px-4 py-1 text-white rounded-lg hover:bg-opacity-[70%]">Prev</button>
           <span>1</span>
-          <button type="button" className="bg-[#366BD9] px-4 py-1 text-white rounded-lg bg-opacity-[70%] hover:bg-[#366BD9]">Next</button>
+          <button type="button" className="bg-[#366BD9] px-4 py-1 text-white rounded-lg hover:bg-opacity-[70%]">Next</button>
         </div>
       </section>
     </>
