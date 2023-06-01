@@ -49,12 +49,12 @@ const Hero = () => {
           <span>2hrs ago</span>
         </div>
         <div className=" w-full">
-          <h1 className="font-semibold font-serif text-7xl w-[95%] md:w-[80%]">
+          <h1 className="font-semibold font-serif text-4xl md:text-7xl w-[95%] md:w-[80%]">
             Charge Two Devices at the Same Time With This Magnetic Wireless Charging Dock
           </h1>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-          <div className="flex flex-col gap-2 border-2 border-l-4 border-[#366BD9] rounded-lg p-3 hover:bg-slate-500">
+          <div className="flex md:flex-col gap-2 border-2 border-l-4 border-[#366BD9] rounded-lg p-3 hover:bg-slate-500">
             <img src={heroIMG} alt="news" className="h-[84px] w-[114px] rounded-lg" />
             <p className=" font-mono text-sm hover:underline hover:cursor-pointer">
               Charge Two Devices at the Same Time With This Magnetic Wireless Charging Dock
