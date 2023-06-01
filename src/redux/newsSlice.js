@@ -30,7 +30,7 @@ export const popularNewsThunk = createAsyncThunk('/popular-news', async (data = 
 });
 
 const initialState = {
-  latestNews: [],
+  latestNews: {},
   popularNews: [],
   loading: true,
   error: null,
