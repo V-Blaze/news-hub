@@ -38,7 +38,7 @@ const Navbar = () => (
         <input
           type="text"
           placeholder="search"
-          className=" bg-transparent focus:outline-none pl-4"
+          className=" bg-transparent focus:bg-white focus:rounded-lg focus:outline-none pl-4"
         />
         <FaSearchengin className="hover:cursor-pointer" />
       </div>

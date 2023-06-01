@@ -2,7 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 
 // Pages
 import {
-  Home,
+  Home, Details,
 } from './pages';
 
 // Components
@@ -19,6 +19,7 @@ function App() {
         <>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/details" element={<Details />} />
           </Routes>
         </>
       </main>
