@@ -1,4 +1,19 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+
+
+
+export const newsThunk = createAsyncThunk('/news', async ({rejecctWithValue}) => {
+  try {
+    const response = await getLatestNews();
+
+    if (response.status === 200) {
+      return response.data
+    }
+    return rejecctWithValue('Failed to get Latest news')
+  } catch (error) {
+    return rejectWithValue(error.message);
+  }
+});
 
 const initialState = {
   reservations: [],
@@ -10,12 +25,12 @@ export const newsSlice = createSlice({
   name: 'news',
   initialState,
   reducers: {
-    decrement: (state) => {
-      state.value -= 1;
-    },
+  },
+  extraReducers: (builder) => {
+
   },
 });
 
-export const { decrement } = newsSlice.actions;
+// export const { decrement } = newsSlice.actions;
 
 export default newsSlice.reducer;
