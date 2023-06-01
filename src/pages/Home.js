@@ -72,7 +72,7 @@ const Home = () => {
       <section className="w-full ">
         <div className="w-full p-6 gap-4 flex flex-col items-center">
           <div className="w-full  flex justify-around mb-6">
-            <h2 className=" font-serif font-semibold text-2xl">Latest Post</h2>
+            <h2 className=" font-serif font-semibold text-4xl">Latest News</h2>
             <select id="categories" name="categories" className="px-6 py-2 border border-[#366BD9] rounded-t-lg focus:border-[#366BD9]">
               <option value="volvo">Volvo</option>
               <option value="saab">Saab</option>
@@ -89,7 +89,7 @@ const Home = () => {
             ))}
           </div>
         </div>
-        <div className="flex gap-8 w-full justify-center md:justify-end pl-6">
+        <div className="flex gap-8 w-full justify-center md:justify-end pr-6">
           <button type="button" className="bg-[#366BD9] px-4 py-1 text-white rounded-lg bg-opacity-[70%] hover:bg-[#366BD9]">Prev</button>
           <span>1</span>
           <button type="button" className="bg-[#366BD9] px-4 py-1 text-white rounded-lg bg-opacity-[70%] hover:bg-[#366BD9]">Next</button>

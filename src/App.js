@@ -6,7 +6,7 @@ import {
 } from './pages';
 
 // Components
-import { Navbar } from './components';
+import { Navbar, Footer } from './components';
 
 // Stylesheet
 import './App.css';
@@ -22,6 +22,7 @@ function App() {
           </Routes>
         </>
       </main>
+      <Footer />
     </>
   );
 }
