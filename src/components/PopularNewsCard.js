@@ -6,7 +6,7 @@ const PopularNewsCard = ({ newsItem }) => {
     image, slug, time, category,
   } = newsItem;
   return (
-    <div className="grid grid-cols-3 gap-3">
+    <div className="grid grid-cols-3 gap-3 hover:bg-slate-500 rounded-lg p-1">
       <img src={image} alt="news" className="h-[94px] w-[144px] rounded-lg" />
       <div className="flex flex-col gap-2 col-span-2">
         <div className="flex gap-4 font-thin italic">
