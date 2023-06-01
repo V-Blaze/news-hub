@@ -1,20 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+// UTILITY FUNCTIONS
+import getTimeAgo from './utils';
+
+// Assets
+import { heroIMG } from '../assets/images';
+
 const PopularNewsCard = ({ newsItem }) => {
   const {
-    image, slug, time, category,
+    source, publishedAt, title, urlToImage,
   } = newsItem;
   return (
     <div className="grid grid-cols-3 gap-3 hover:bg-slate-500 rounded-lg p-1">
-      <img src={image} alt="news" className="h-[94px] w-[144px] rounded-lg" />
+      <img src={urlToImage === 'null' ? urlToImage : heroIMG} alt="news" className="h-[94px] w-[144px] rounded-lg" />
       <div className="flex flex-col gap-2 col-span-2">
         <div className="flex gap-4 font-thin italic">
-          <span>{category}</span>
-          <span>{time}</span>
+          <span>{source?.name}</span>
+          <span>{getTimeAgo(publishedAt)}</span>
         </div>
         <p className=" font-mono text-sm hover:underline hover:cursor-pointer">
-          {slug}
+          {title}
         </p>
       </div>
     </div>

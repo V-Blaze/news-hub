@@ -9,16 +9,18 @@ import { newsThunk } from '../redux/newsSlice';
 
 const Home = () => {
   const dispatch = useDispatch();
-  const loading = useSelector((state) => state.news.loading);
+  // const loading = useSelector((state) => state.news.loading);
+  // const latttestNews = useSelector((state) => state.news);
   const latestNews = useSelector((state) => state.news.latestNews);
 
   useEffect(() => {
     dispatch(newsThunk());
-    console.log('here');
+    // dispatch(popularNewsThunk());
     // console.log(latestNews, loading);
   }, [dispatch]);
+  // console.log(latttestNews, 'here1');
 
-  console.log(latestNews?.articles, loading);
+  // console.log(loading, popularNews);
   return (
     <>
       <Hero />
