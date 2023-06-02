@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 // Componenets
 import PopularNewsCard from './PopularNewsCard';
@@ -12,11 +13,18 @@ import getTimeAgo from './utils';
 
 const Hero = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const popularNews = useSelector((state) => state.news.popularNews);
 
   useEffect(() => {
     dispatch(popularNewsThunk());
   }, [dispatch]);
+
+  const viewDetails = (title) => {
+    const item = popularNews.filter((newsitem) => newsitem.title === title);
+    navigate('/details', { state: item[0] });
+    // console.log(item);
+  };
 
   // console.log(popularNews.length, 'popular');
 
@@ -36,15 +44,23 @@ const Hero = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           <div className="flex md:flex-col gap-2 border-2 border-l-4 border-[#366BD9] rounded-lg p-3 hover:bg-slate-500">
             <img src={popularNews.length ? popularNews[1].urlToImage : ''} alt="news" className="h-[84px] w-[114px] rounded-lg" />
-            <p className=" font-mono text-sm hover:underline hover:cursor-pointer">
+            <button
+              type="button"
+              onClick={() => viewDetails(popularNews[1].title)}
+              className=" font-mono text-sm hover:underline hover:cursor-pointer"
+            >
               {popularNews.length > 0 && popularNews[1].title}
-            </p>
+            </button>
           </div>
           <div className="hidden md:flex flex-col gap-2 border-2 border-[#366BD9] rounded-lg p-3 hover:bg-slate-500">
             <img src={popularNews.length ? popularNews[2].urlToImage : ''} alt="news" className="h-[84px] w-[114px] rounded-lg" />
-            <p className=" font-mono">
+            <button
+              type="button"
+              onClick={() => viewDetails(popularNews[2].title)}
+              className=" font-mono text-sm hover:underline hover:cursor-pointer"
+            >
               {popularNews.length > 0 && popularNews[2].title}
-            </p>
+            </button>
           </div>
         </div>
       </div>
@@ -55,6 +71,7 @@ const Hero = () => {
             <PopularNewsCard
               newsItem={newsItem}
               key={newsItem.publishedAt}
+              viewDetails={viewDetails}
             />
           ))}
         </div>

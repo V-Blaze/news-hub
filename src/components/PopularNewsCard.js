@@ -7,7 +7,7 @@ import getTimeAgo from './utils';
 // Assets
 import { heroIMG } from '../assets/images';
 
-const PopularNewsCard = ({ newsItem }) => {
+const PopularNewsCard = ({ newsItem, viewDetails }) => {
   const {
     source, publishedAt, title, urlToImage,
   } = newsItem;
@@ -19,9 +19,13 @@ const PopularNewsCard = ({ newsItem }) => {
           <span>{source?.name}</span>
           <span>{getTimeAgo(publishedAt)}</span>
         </div>
-        <p className=" font-mono text-sm hover:underline hover:cursor-pointer">
+        <button
+          className=" font-mono text-sm hover:underline hover:cursor-pointer"
+          type="button"
+          onClick={() => viewDetails(title)}
+        >
           {title}
-        </p>
+        </button>
       </div>
     </div>
   );
@@ -29,6 +33,7 @@ const PopularNewsCard = ({ newsItem }) => {
 
 PopularNewsCard.propTypes = {
   newsItem: PropTypes.oneOfType([PropTypes.object]).isRequired,
+  viewDetails: PropTypes.func.isRequired,
 };
 
 export default PopularNewsCard;
