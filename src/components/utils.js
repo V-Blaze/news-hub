@@ -22,4 +22,8 @@ const getTimeAgo = (dateString) => {
   return `${seconds} seconds ago`;
 };
 
+export const openInNewTab = (url) => {
+  window.open(url, '_blank', 'noopener,noreferrer');
+};
+
 export default getTimeAgo;

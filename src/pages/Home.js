@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 // Components
 import { Hero, NewsCard } from '../components';
@@ -9,6 +10,7 @@ import { newsThunk } from '../redux/newsSlice';
 
 const Home = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   // const loading = useSelector((state) => state.news.loading);
   const latestNews = useSelector((state) => state.news.latestNews);
   const [currentPage, setCurrentPage] = useState(1);
@@ -47,6 +49,12 @@ const Home = () => {
     console.log(endIndex, latestNews.articles.length);
   };
 
+  const viewDetails = (title) => {
+    const item = latestNews.articles.filter((newsitem) => newsitem.title === title);
+    navigate('/details', { state: item[0] });
+    // console.log(item);
+  };
+
   return (
     <>
       <Hero />
@@ -66,6 +74,7 @@ const Home = () => {
               <NewsCard
                 key={newsItem.publishedAt}
                 newsItem={newsItem}
+                viewDetails={viewDetails}
               />
             ))}
           </div>
