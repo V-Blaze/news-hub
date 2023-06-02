@@ -17,8 +17,32 @@ const Home = () => {
   const [startIndex, setStartIndex] = useState(0);
   const [endIndex, setEndIndex] = useState(0);
   const [displayedArticles, setDisplayedArticles] = useState([]);
+  const [newsSource, setNewsSource] = useState([]);
 
   const itemsPerPage = 10;
+
+  const getNewsSources = () => {
+    const uniqueItems = new Set();
+
+    latestNews?.articles?.forEach((item) => {
+      if (!uniqueItems.has(item.source.name)) {
+        uniqueItems.add(item.source.name);
+      }
+    });
+    // console.log('uniqueItems', uniqueItems);
+
+    // const myObject = Array.from(uniqueItems).reduce(
+    //   (obj, item, index) => ({ ...obj, [index]: item }), {},
+    // );
+
+    const myObject = Array.from(uniqueItems, (item) => ({ [item]: item }));
+    setNewsSource(myObject);
+    // console.log(myObject, 'obj');
+    // console.log(newsSource);
+    // myObject.map((item) => console.log(Object.values(item)[0]));
+    // [].forEach((item) => console.log(item));
+    // console.log(Array.from(uniqueItems), 'numq');
+  };
 
   useEffect(() => {
     dispatch(newsThunk());
@@ -29,6 +53,7 @@ const Home = () => {
     setEndIndex(startIndex + itemsPerPage);
     if (latestNews?.articles) {
       setDisplayedArticles(latestNews?.articles?.slice(startIndex, endIndex));
+      getNewsSources();
     }
   }, [latestNews]);
 
@@ -49,6 +74,13 @@ const Home = () => {
     console.log(endIndex, latestNews.articles.length);
   };
 
+  const handleSourceSelect = (e) => {
+    const selectedSource = latestNews.articles.filter(
+      (news) => news.source.name === e.target.value,
+    );
+    setDisplayedArticles(selectedSource);
+  };
+
   const viewDetails = (title) => {
     const item = latestNews.articles.filter((newsitem) => newsitem.title === title);
     navigate('/details', { state: item[0] });
@@ -62,11 +94,20 @@ const Home = () => {
         <div className="w-full p-6 gap-4 flex flex-col items-center">
           <div className="w-full  flex justify-around mb-6">
             <h2 className=" font-serif font-semibold text-4xl">Latest News</h2>
-            <select id="categories" name="categories" className="px-6 py-2 border border-[#366BD9] rounded-t-lg focus:border-[#366BD9]">
-              <option value="volvo">Volvo</option>
-              <option value="saab">Saab</option>
-              <option value="fiat">Fiat</option>
-              <option value="audi">Audi</option>
+            <select
+              id="categories"
+              name="categories"
+              className="px-6 py-2 border border-[#366BD9] rounded-t-lg focus:border-[#366BD9]"
+              onChange={handleSourceSelect}
+            >
+              {newsSource.map((item) => (
+                <option
+                  key={Object.values(item)[0]}
+                  value={Object.values(item)[0]}
+                >
+                  {Object.values(item)[0]}
+                </option>
+              ))}
             </select>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
