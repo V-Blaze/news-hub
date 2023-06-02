@@ -1,21 +1,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const PopularNewsCard = ({ newsItem }) => {
+// UTILITY FUNCTIONS
+import getTimeAgo from './utils';
+
+// Assets
+import { heroIMG } from '../assets/images';
+
+const PopularNewsCard = ({ newsItem, viewDetails }) => {
   const {
-    image, slug, time, category,
+    source, publishedAt, title, urlToImage,
   } = newsItem;
   return (
     <div className="grid grid-cols-3 gap-3 hover:bg-slate-500 rounded-lg p-1">
-      <img src={image} alt="news" className="h-[94px] w-[144px] rounded-lg" />
+      <img src={urlToImage !== null ? urlToImage : heroIMG} alt="news" className="h-[94px] w-[144px] rounded-lg" />
       <div className="flex flex-col gap-2 col-span-2">
         <div className="flex gap-4 font-thin italic">
-          <span>{category}</span>
-          <span>{time}</span>
+          <span>{source?.name}</span>
+          <span>{getTimeAgo(publishedAt)}</span>
         </div>
-        <p className=" font-mono text-sm hover:underline hover:cursor-pointer">
-          {slug}
-        </p>
+        <button
+          className=" font-mono text-sm hover:underline hover:cursor-pointer"
+          type="button"
+          onClick={() => viewDetails(title)}
+        >
+          {title}
+        </button>
       </div>
     </div>
   );
@@ -23,6 +33,7 @@ const PopularNewsCard = ({ newsItem }) => {
 
 PopularNewsCard.propTypes = {
   newsItem: PropTypes.oneOfType([PropTypes.object]).isRequired,
+  viewDetails: PropTypes.func.isRequired,
 };
 
 export default PopularNewsCard;
