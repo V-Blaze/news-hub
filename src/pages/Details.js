@@ -15,7 +15,6 @@ import getTimeAgo, { openInNewTab } from '../components/utils';
 const Details = () => {
   const location = useLocation();
 
-  console.log(location.state);
   const {
     author, title, content, url, urlToImage, publishedAt, description, source,
   } = location.state;

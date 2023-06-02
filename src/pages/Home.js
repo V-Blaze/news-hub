@@ -29,19 +29,9 @@ const Home = () => {
         uniqueItems.add(item.source.name);
       }
     });
-    // console.log('uniqueItems', uniqueItems);
-
-    // const myObject = Array.from(uniqueItems).reduce(
-    //   (obj, item, index) => ({ ...obj, [index]: item }), {},
-    // );
 
     const myObject = Array.from(uniqueItems, (item) => ({ [item]: item }));
     setNewsSource(myObject);
-    // console.log(myObject, 'obj');
-    // console.log(newsSource);
-    // myObject.map((item) => console.log(Object.values(item)[0]));
-    // [].forEach((item) => console.log(item));
-    // console.log(Array.from(uniqueItems), 'numq');
   };
 
   useEffect(() => {
@@ -62,7 +52,6 @@ const Home = () => {
     setCurrentPage(currentPage + 1);
     setStartIndex((endIndex + 1));
     setEndIndex((endIndex + 1) + itemsPerPage);
-    console.log(endIndex, latestNews.articles.length);
   };
 
   const handlePrev = () => {
@@ -71,7 +60,6 @@ const Home = () => {
     setCurrentPage(currentPage - 1);
     setStartIndex((startIndex - 1) - itemsPerPage);
     setEndIndex(((endIndex - 1) - itemsPerPage));
-    console.log(endIndex, latestNews.articles.length);
   };
 
   const handleSourceSelect = (e) => {
@@ -84,7 +72,6 @@ const Home = () => {
   const viewDetails = (title) => {
     const item = latestNews.articles.filter((newsitem) => newsitem.title === title);
     navigate('/details', { state: item[0] });
-    // console.log(item);
   };
 
   return (

@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { getLatestNews, getPopularNews } from './api/newsAPI';
 
-export const newsThunk = createAsyncThunk('/news', async (data = '', { rejectWithValue }) => {
+export const newsThunk = createAsyncThunk('/news', async (data = 'data', { rejectWithValue }) => {
   console.log(data);
   try {
     const response = await getLatestNews();
