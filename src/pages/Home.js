@@ -97,7 +97,7 @@ const Home = () => {
             <select
               id="categories"
               name="categories"
-              className="px-6 py-2 border border-[#366BD9] rounded-t-lg focus:border-[#366BD9]"
+              className="px-1 border border-[#366BD9] rounded-t-lg focus:border-[#366BD9]"
               onChange={handleSourceSelect}
             >
               {newsSource.map((item) => (
